@@ -1,75 +1,53 @@
-# Updates
+# UDVideoQA: A Traffic Video Question Answering Dataset for Multi-Object Spatio-Temporal Reasoning in Urban Dynamics
 
-- [7 March 2025] Dataset description released
-- [3 March 2025] Training Code and Sample Dataset Released
-- [28 February 2025] Website is Live.
-- [16 February 2025] Paper on archive.
-- [12 September 2025] Complete Dataset available on hugging face
-- Model checkpoint will be released soon.
-
-# _InterAct VideoQA_: A Benchmark Dataset for Video Question Answering in Traffic Intersection Monitoring
 
 <div>
-<a href="https://arxiv.org/abs/2507.14743"> Paper</a> |
-<a href="https://interact-videoqa.github.io/InterActVideoQA/index.html">Website</a> |
-<a href="https://huggingface.co/datasets/joeWabbit/InterAct_Video_Reasoning_Rich_Video_QA_for_Urban_Traffic">Data</a> |
-<a href="https://interact-videoqa.github.io/InterActVideoQA/docs/InterAct_VideoQADatasetDescription.pdf" target="_blank">Doc </a> |
+<a href="#">Paper (Coming Soon)</a> |
+<a href="#">Website (Coming Soon)</a> |
+<a href="#">Data (Coming Soon)</a> |
 </div>
 <hr>
 <div style="text-align: center;">
-<img src="https://github.com/user-attachments/assets/9b0e8d90-ff04-44f5-a2fc-9fc03e7aaf3a"/>
+<img src="assets/Teaser01-1.png" width="950"/>
 </div>
-<p align="justify">Traffic monitoring is crucial for urban mobility, road safety, and intelligent transportation systems (ITS). Deep learning has advanced video-based traffic monitoring through video question answering (VideoQA) models, enabling structured insight extraction from traffic videos. However, existing VideoQA models struggle with the complexity of real-world traffic scenes, where multiple concurrent events unfold across spatiotemporal dimensions. To address these challenges, this paper introduces InterAct VideoQA, a curated dataset designed to benchmark and enhance VideoQA models for traffic monitoring tasks. The InterAct VideoQA dataset comprises 8 hours of real-world traffic footage collected from diverse intersections, segmented into 10-second video clips, with over 25,000 question-answer (QA) pairs covering spatiotemporal dynamics, vehicle interactions, incident detection, and other critical traffic attributes. State-of-the-art VideoQA models are evaluated on InterAct VideoQA, exposing challenges in reasoning over fine-grained spatiotemporal dependencies within complex traffic scenarios. Fine-tuning these models on InterAct VideoQA also yields notable performance improvements, demonstrating the necessity of domain-specific datasets for VideoQA. InterAct VideoQA is publicly available as a benchmark dataset to facilitate future research in real-world-deployable VideoQA models for intelligent transportation systems.
+<p align="justify">
+Understanding the complex, multi-agent dynamics of urban traffic remains a fundamental challenge for video-language models (VideoLMs). <strong>UDVideoQA</strong> (Urban Dynamics VideoQA) is a large-scale benchmark designed to capture the unscripted, real-world behavior of dynamic urban scenes. Curated from <strong>16 hours (1.7M frames)</strong> of traffic footage recorded at multiple city intersections, the dataset covers diverse traffic, weather, and lighting conditions.
+
+Unlike previous datasets, UDVideoQA employs a hierarchical taxonomy spanning <strong>five reasoning categories</strong>: Attribution, Basic Understanding, Event Reasoning, Reverse Reasoning, and Counterfactual Inference. This structure enables the systematic evaluation of both visual grounding and causal reasoning in VideoLMs.
 </p>
 
 # Related Works
-
 <div style="text-align: center;">
-<img src="https://github.com/user-attachments/assets/82c93cc6-4f7d-4e35-b38f-5079b1b12ef3"/>
+<img src="assets/Related works.png" width="950"/>
 </div>
 
-# Dataset Download
-
-Dataset can be downloaded <a href="https://huggingface.co/datasets/joeWabbit/InterAct_Video_Reasoning_Rich_Video_QA_for_Urban_Traffic">here</a>
-
-# Dataset Overview
-
-<p align="justify">
-InterAct VideoQA dataset comprises 28,800 question-answer pairs across various reasoning categories. A higher concentration appears in counting, attribute recognition, and event reasoning, followed by counterfactual inference and reverse reasoning.The dataset also illustrate the dataset's emphasis on vehicular-related questions, the dominance of attribution and event reasoning categories, and the distribution of question types (“what,” “where,” and “how”). This structured approach supports the analysis of complex, multi-event traffic scenarios requiring robust spatio-temporal reasoning. A rigorous human and GPT-assisted validation process ensures all annotations' consistency, accuracy, and reliability.
-</p>
-
-# Folder Structure
-
-```
-data
-├── annotations.csv
-└── Videos
-    ├── clip_videos_0.mp4
-    ├── clip_videos_1.mp4
-    ├── clip_videos_2.mp4
-    └── ...
-
-```
-
-# Model Setup
-
-Please look at the official github page for the models to set up.
-
-- [VideoLLama2](https://github.com/DAMO-NLP-SG/VideoLLaMA2)
-- [LlavaNext-Video](https://github.com/LLaVA-VL/LLaVA-NeXT)
-- [Qwen2-VL-7B-hf](https://github.com/QwenLM/Qwen2.5-VL)
-
-# Baseline
+## Key Features
 
 <div style="text-align: center;">
-    <img src="https://github.com/user-attachments/assets/264443ff-05c6-49d2-9d5c-60a0789b6b2d" alt="Image">
+  <img src="assets/dataset_Stats-1.png" width="950"/>
 </div>
 
-The main implementations for these models for InterAct VideoQA can be found here.
+- **Large-Scale Data:** 16 hours of raw footage, ~1.7 million frames, and **28,800 QA pairs**.
+- **High Density:** Average of 3.6K QA pairs per hour (approx. one question per second of annotated video).
+- **Privacy-Preserving:** Integrates a novel event-driven dynamic blurring mechanism to protect privacy without compromising scene fidelity or context.
+- **Hierarchical Reasoning:** Tests models on increasing complexity, from basic perception to complex causal and counterfactual inference.
+- **VideoQGen Benchmark:** Includes the first-of-its-kind benchmark for video question generation in the urban traffic domain.
 
-[VideoLLama2](https://github.com/joe-rabbit/interact_videoqa/tree/main/interAct%20VideoQA/VideoLlama2) |
-[LlavaNext-Video](https://github.com/joe-rabbit/interact_videoqa/tree/main/interAct%20VideoQA/Llava-Next-Video) |
-[Qwen2-VL-7B-hf](https://github.com/joe-rabbit/interact_videoqa/tree/main/interAct%20VideoQA/Qwen-VL2-7B-hf)
+
+
+# Benchmarks and Baselines
+
+<div style="text-align: center;">
+<img src="assets/Results.png" width="950"/>
+</div>
+
+We benchmarked 10 State-of-the-Art (SOTA) VideoLMs. The results reveal a persistent "perception-reasoning gap," where models capable of abstract inference often fail at fundamental visual grounding.
+
+**Key Findings:**
+* **Proprietary Models:** **Gemini 2.5 Pro** achieved the highest overall zero-shot accuracy across varying lighting conditions.
+* **Open-Source Models:** Fine-tuning the smaller **Qwen2.5-VL 7B** bridged the performance gap, achieving results comparable to proprietary systems and outperforming larger models like GPT-4o in low-light ("Evening") scenarios.
+* **Challenge:** Most models struggle significantly with *Event Reasoning* and *Reverse Reasoning* compared to *Basic Understanding*, highlighting the difficulty of temporal causality.
+
 
 # License
 
@@ -77,15 +55,13 @@ The main implementations for these models for InterAct VideoQA can be found here
 
 # Citation
 
-```
-@misc{vishal2025interactvideoreasoningrichvideoqa,
-      title={InterAct-Video: Reasoning-Rich Video QA for Urban Traffic}, 
-      author={Joseph Raj Vishal and Divesh Basina and Rutuja Patil and Manas Srinivas Gowda and Katha Naik and Yezhou Yang and Bharatesh Chakravarthi},
-      year={2025},
-      eprint={2507.14743},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV},
-      url={https://arxiv.org/abs/2507.14743}, 
+```bibtex
+@inproceedings{udvideoqa2026,
+      title={UDVideoQA: A Traffic Video Question Answering Dataset for Multi-Object Spatio-Temporal Reasoning in Urban Dynamics}, 
+      author={Anonymous Authors},
+      booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+      year={2026},
+      note={Under Review}
 }
 ```
 
