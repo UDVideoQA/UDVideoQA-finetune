@@ -22,14 +22,17 @@ Unlike previous datasets, UDVideoQA employs a hierarchical taxonomy spanning <st
 </div>
 
 ## Key Features
+
 <div style="text-align: center;">
-<img src="assets/dataset_Stats-1.png" width="950"/>
+  <img src="assets/dataset_Stats-1.png" width="950"/>
 </div>
-* **Large-Scale Data:** 16 hours of raw footage, ~1.7 million frames, and **28,800 QA pairs**.
-* **High Density:** Average of 3.6K QA pairs per hour (approx. one question per second of annotated video).
-* **Privacy-Preserving:** Integrates a novel event-driven dynamic blurring mechanism to protect privacy without compromising scene fidelity or context.
-* **Hierarchical Reasoning:** Tests models on increasing complexity, from basic perception to complex causal and counterfactual inference.
-* **VideoQGen Benchmark:** Includes the first-of-its-kind benchmark for video question generation in the urban traffic domain.
+
+- **Large-Scale Data:** 16 hours of raw footage, ~1.7 million frames, and **28,800 QA pairs**.
+- **High Density:** Average of 3.6K QA pairs per hour (approx. one question per second of annotated video).
+- **Privacy-Preserving:** Integrates a novel event-driven dynamic blurring mechanism to protect privacy without compromising scene fidelity or context.
+- **Hierarchical Reasoning:** Tests models on increasing complexity, from basic perception to complex causal and counterfactual inference.
+- **VideoQGen Benchmark:** Includes the first-of-its-kind benchmark for video question generation in the urban traffic domain.
+
 
 
 # Benchmarks and Baselines
