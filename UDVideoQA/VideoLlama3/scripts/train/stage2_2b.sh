@@ -2,11 +2,17 @@
 # ============================
 # Minimal Working 4-bit LoRA Script
 # ============================
+set -euo pipefail
+REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)"
 
 module load ffmpeg-6.0-gcc-12.1.0
 
 # Minimal environment setup
-export HF_HOME="/scratch/kkota3/huggingface_cache"
+export HF_HOME="${HF_HOME:-$REPO_ROOT/.hf_cache}"
+export TRANSFORMERS_CACHE="${TRANSFORMERS_CACHE:-$HF_HOME}"
+export HF_DATASETS_CACHE="${HF_DATASETS_CACHE:-$HF_HOME}"
+export HUGGINGFACE_HUB_CACHE="${HUGGINGFACE_HUB_CACHE:-$HF_HOME}"
+
 export PYTORCH_CUDA_ALLOC_CONF=max_split_size_mb:256
 export OMP_NUM_THREADS=1
 export TOKENIZERS_PARALLELISM=false
@@ -16,13 +22,13 @@ export CUDA_VISIBLE_DEVICES=0  # Force single GPU
 pkill -f python 2>/dev/null || true
 sleep 3
 
-export PYTHONPATH="/scratch/kkota3/interact_videoqa/UDVideoQA/VideoLlama3:$PYTHONPATH"
+export PYTHONPATH="$REPO_ROOT/UDVideoQA/VideoLlama3:$PYTHONPATH"
 
-DATA_DIR="/scratch/kkota3/interact_videoqa/UDVideoQA/VideoLlama3/data/InterAct_Video_Reasoning_Rich_Video_QA_for_Urban_Traffic"
-OUTP_DIR="/scratch/kkota3/interact_videoqa/UDVideoQA/VideoLlama3/videollama3_training_output_7b"
+DATA_DIR="${DATA_DIR:-$REPO_ROOT/data}"
+OUTP_DIR="${OUTP_DIR:-$REPO_ROOT/outputs/videollama3_training_output_7b}"
 
 # Single GPU, no torchrun, minimal setup
-python "/scratch/kkota3/interact_videoqa/UDVideoQA/VideoLlama3/train.py" \
+python "$REPO_ROOT/UDVideoQA/VideoLlama3/train.py" \
     --model_type videollama3_qwen2 \
     --model_path "${OUTP_DIR}/checkpoint-187" \
     --vision_encoder DAMO-NLP-SG/SigLIP-NaViT \

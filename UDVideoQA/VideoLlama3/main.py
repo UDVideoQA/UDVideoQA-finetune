@@ -12,9 +12,9 @@ def main():
     parser.add_argument("--train", action="store_true", help="Run training pipeline")
 
     # dataset args
-    parser.add_argument("--annotations_csv", type=str, default="/data/annotations.csv")
-    parser.add_argument("--source_video_dir", type=str, default="/data/train/1.43pm/video/")
-    parser.add_argument("--out_dataset", type=str, default="/data/")
+    parser.add_argument("--annotations_csv", type=str, default="data/annotations.csv")
+    parser.add_argument("--source_video_dir", type=str, default="data/videos/")
+    parser.add_argument("--out_dataset", type=str, default="data/")
 
     args = parser.parse_args()
 
