@@ -1,4 +1,6 @@
 #!/bin/bash
+set -euo pipefail
+REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 
 # Qwen2-VL LoRA Vision Fine-tuning for Video QA
 # Adapted for your video dataset structure
@@ -6,7 +8,7 @@
 MODEL_NAME="Qwen/Qwen2.5-VL-3B-Instruct"
 
 # Get paths from environment variables or use defaults
-DATA_PATH=${DATA_PATH:-"training_data/meta_config.json"}
+DATA_PATH=${DATA_PATH:-"$REPO_ROOT/training_data/meta_config.json"}
 VIDEO_FOLDER=${VIDEO_FOLDER:-"data"}
 OUTPUT_DIR=${OUTPUT_DIR:-"output/qwen_video_qa"}
 NUM_EPOCHS=${NUM_EPOCHS:-1}
@@ -30,8 +32,9 @@ echo "✅ Dependencies installed with exact versions"
 
 # Pre-download the model weights from HuggingFace
 echo "📥 Pre-downloading Qwen2.5-VL-3B-Instruct model weights..."
-export HF_HOME="/scratch/jnolas77/VideoQA/interact_videoqa/UDVideoQA/Qwen-VL2-7B-hf/.hf_cache"
-export TRANSFORMERS_CACHE="/scratch/jnolas77/VideoQA/interact_videoqa/UDVideoQA/Qwen-VL2-7B-hf/.transformers_cache"
+export HF_HOME="${HF_HOME:-$REPO_ROOT/.hf_cache}"
+export TRANSFORMERS_CACHE="${TRANSFORMERS_CACHE:-$REPO_ROOT/.transformers_cache}"
+export HF_DATASETS_CACHE="${HF_DATASETS_CACHE:-$REPO_ROOT/.hf_datasets_cache}"
 mkdir -p "$HF_HOME"
 mkdir -p "$TRANSFORMERS_CACHE"
 echo "💾 Model cache directory set to: $TRANSFORMERS_CACHE"
@@ -98,7 +101,7 @@ deepspeed src/train/train_sft.py \
     --num_lora_modules -1 \
     --deepspeed scripts/zero3.json \
     --model_id "$MODEL_NAME" \
-        --data_path "/scratch/jnolas77/VideoQA/interact_videoqa/UDVideoQA/Qwen-VL2-7B-hf/training_data/meta_config.json" \
+        --data_path "${DATA_PATH:-$REPO_ROOT/training_data/meta_config.json}" \
     --remove_unused_columns False \
     --freeze_vision_tower True \
     --freeze_llm True \

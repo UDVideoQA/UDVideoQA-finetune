@@ -1,5 +1,8 @@
 # Configuration file for LLaVA-Next-Video training
 
+import os
+CACHE_DIR = os.getenv("HF_HOME", "./.hf_cache")
+
 # Training configuration
 TRAINING_CONFIG = {
     "lr": 5e-5,
@@ -17,7 +20,7 @@ TRAINING_CONFIG = {
 # Model configuration
 MODEL_CONFIG = {
     "model_id": "llava-hf/LLaVA-NeXT-Video-7B-hf",
-    "cache_dir": "/scratch/kvinod/VideoQA/interact_videoqa/UDVideoQA/Llava-Next-Video/cache",
+    "cache_dir": CACHE_DIR,
     "num_frames": 10,
     "max_new_tokens": 128,
     "temperature": 0.7,
