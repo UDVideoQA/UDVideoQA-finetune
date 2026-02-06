@@ -17,7 +17,7 @@ TRAINING_CONFIG = {
 # Model configuration
 MODEL_CONFIG = {
     "model_id": "llava-hf/LLaVA-NeXT-Video-7B-hf",
-    "cache_dir": "/scratch/kvinod/VideoQA/interact_videoqa/interAct VideoQA/Llava-Next-Video/cache",
+    "cache_dir": "/scratch/kvinod/VideoQA/interact_videoqa/UDVideoQA/Llava-Next-Video/cache",
     "num_frames": 10,
     "max_new_tokens": 128,
     "temperature": 0.7,

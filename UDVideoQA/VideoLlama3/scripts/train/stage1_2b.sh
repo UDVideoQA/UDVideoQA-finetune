@@ -20,7 +20,7 @@ export CUDA_LAUNCH_BLOCKING=0
 python -c "import torch; torch.cuda.empty_cache()" 2>/dev/null || true
 
 # Add VideoLlama3 to Python path
-export PYTHONPATH="/scratch/kkota3/interact_videoqa/interAct VideoQA/VideoLlama3:$PYTHONPATH"
+export PYTHONPATH="/scratch/kkota3/interact_videoqa/UDVideoQA/VideoLlama3:$PYTHONPATH"
 
 WORLD_SIZE=${WORLD_SIZE:-1}
 NPROC_PER_NODE=${NPROC_PER_NODE:-1}
@@ -38,15 +38,15 @@ echo "GRADIENT_ACCUMULATION_STEPS=$GRADIENT_ACCUMULATION_STEPS"
 
 export WANDB_PROJECT=videollama3_qwen2.5_7b
 RUN_NAME=stage1_7b
-DATA_DIR="/scratch/kkota3/interact_videoqa/interAct VideoQA/VideoLlama3/data/InterAct_Video_Reasoning_Rich_Video_QA_for_Urban_Traffic"
-OUTP_DIR="/scratch/kkota3/interact_videoqa/interAct VideoQA/VideoLlama3/videollama3_training_output_7b"
+DATA_DIR="/scratch/kkota3/interact_videoqa/UDVideoQA/VideoLlama3/data/InterAct_Video_Reasoning_Rich_Video_QA_for_Urban_Traffic"
+OUTP_DIR="/scratch/kkota3/interact_videoqa/UDVideoQA/VideoLlama3/videollama3_training_output_7b"
 
 torchrun --nnodes $WORLD_SIZE \
     --nproc_per_node $NPROC_PER_NODE \
     --master_addr $MASTER_ADDR \
     --master_port $MASTER_PORT \
     --node_rank $RANK \
-    "/scratch/kkota3/interact_videoqa/interAct VideoQA/VideoLlama3/train.py" \
+    "/scratch/kkota3/interact_videoqa/UDVideoQA/VideoLlama3/train.py" \
     --deepspeed '{
     "fp16": {
         "enabled": "auto",
@@ -71,7 +71,7 @@ torchrun --nnodes $WORLD_SIZE \
     }
 }' \
     --model_type videollama3_qwen2 \
-    --model_path "/scratch/kkota3/interact_videoqa/interAct VideoQA/VideoLlama3/VideoLLaMA3/weights/videollama3_7b_local" \
+    --model_path "/scratch/kkota3/interact_videoqa/UDVideoQA/VideoLlama3/VideoLLaMA3/weights/videollama3_7b_local" \
     --vision_encoder DAMO-NLP-SG/SigLIP-NaViT \
     --mm_attn_implementation eager \
     --mm_projector_type mlp2x_gelu \

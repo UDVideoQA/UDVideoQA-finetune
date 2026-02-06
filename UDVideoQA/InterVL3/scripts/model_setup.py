@@ -4,7 +4,7 @@ import math
 from modelscope import AutoTokenizer,AutoModel,AutoConfig
 from scripts.config import MODEL_NAME,MODEL_PATH,CACHE_DIR
 import os
-os.environ['MODELSCOPE_CACHE'] = '/scratch/jnolas77/VideoQA/interact_videoqa/interAct VideoQA/InterVL2/scripts/cache_dir'
+os.environ['MODELSCOPE_CACHE'] = '/scratch/jnolas77/VideoQA/interact_videoqa/UDVideoQA/InterVL2/scripts/cache_dir'
 def split_model(model_path):
     device_map = {}
     world_size = torch.cuda.device_count()

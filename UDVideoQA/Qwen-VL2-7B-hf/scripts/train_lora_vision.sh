@@ -30,8 +30,8 @@ echo "✅ Dependencies installed with exact versions"
 
 # Pre-download the model weights from HuggingFace
 echo "📥 Pre-downloading Qwen2.5-VL-3B-Instruct model weights..."
-export HF_HOME="/scratch/jnolas77/VideoQA/interact_videoqa/interAct VideoQA/Qwen-VL2-7B-hf/.hf_cache"
-export TRANSFORMERS_CACHE="/scratch/jnolas77/VideoQA/interact_videoqa/interAct VideoQA/Qwen-VL2-7B-hf/.transformers_cache"
+export HF_HOME="/scratch/jnolas77/VideoQA/interact_videoqa/UDVideoQA/Qwen-VL2-7B-hf/.hf_cache"
+export TRANSFORMERS_CACHE="/scratch/jnolas77/VideoQA/interact_videoqa/UDVideoQA/Qwen-VL2-7B-hf/.transformers_cache"
 mkdir -p "$HF_HOME"
 mkdir -p "$TRANSFORMERS_CACHE"
 echo "💾 Model cache directory set to: $TRANSFORMERS_CACHE"
@@ -98,7 +98,7 @@ deepspeed src/train/train_sft.py \
     --num_lora_modules -1 \
     --deepspeed scripts/zero3.json \
     --model_id "$MODEL_NAME" \
-        --data_path "/scratch/jnolas77/VideoQA/interact_videoqa/interAct VideoQA/Qwen-VL2-7B-hf/training_data/meta_config.json" \
+        --data_path "/scratch/jnolas77/VideoQA/interact_videoqa/UDVideoQA/Qwen-VL2-7B-hf/training_data/meta_config.json" \
     --remove_unused_columns False \
     --freeze_vision_tower True \
     --freeze_llm True \
