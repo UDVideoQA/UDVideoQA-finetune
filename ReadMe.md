@@ -3,8 +3,8 @@
 
 <div>
 <a href="#">Paper (Coming Soon)</a> |
-<a href="#">Website (Coming Soon)</a> |
-<a href="#">Data (Coming Soon)</a> |
+<a href="https://ud-videoqa.github.io/UD-VideoQA/UD-VideoQA/index.html">Website</a> |
+<a href="https://huggingface.co/UDVideoQA">Data</a> |
 </div>
 <hr>
 <div style="text-align: center;">
@@ -64,6 +64,7 @@ We benchmarked 10 State-of-the-Art (SOTA) VideoLMs. The results reveal a persist
       note={Under Review}
 }
 ```
+
 
 
 
