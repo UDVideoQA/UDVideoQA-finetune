@@ -56,14 +56,17 @@ We benchmarked 10 State-of-the-Art (SOTA) VideoLMs. The results reveal a persist
 # Citation
 
 ```bibtex
-@inproceedings{udvideoqa2026,
+@misc{vishal2026udvideoqatrafficvideoquestion,
       title={UDVideoQA: A Traffic Video Question Answering Dataset for Multi-Object Spatio-Temporal Reasoning in Urban Dynamics}, 
-      author={Anonymous Authors},
-      booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+      author={Joseph Raj Vishal and Nagasiri Poluri and Katha Naik and Rutuja Patil and Kashyap Hegde Kota and Krishna Vinod and Prithvi Jai Ramesh and Mohammad Farhadi and Yezhou Yang and Bharatesh Chakravarthi},
       year={2026},
-      note={Under Review}
+      eprint={2602.21137},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2602.21137}, 
 }
 ```
+
 
 
 
